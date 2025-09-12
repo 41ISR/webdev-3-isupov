@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -43,9 +44,7 @@ body::-webkit-scrollbar {
     text-transform: uppercase;
     letter-spacing: 3px;
     background: linear-gradient(45deg, #ffffff, #cccccc);
-    -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
     color: transparent;
   }
 
@@ -223,4 +222,194 @@ body::-webkit-scrollbar {
       font-family: inherit;
     }
   }
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+
+  label:hover {
+    background: #1a1a1a;
+  }
+
+  input[type="radio"] {
+    accent-color: #ffffff;
+  }
+
+
+}
+
+.movies-list {
+  width: 100%;
+  padding: 40px 0;
+
+  .title {
+    text-align: center;
+    margin-bottom: 30 px;
+    font-size: 2.3rem;
+    color: white;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px;
+    background: #0a0a0a;
+    border: 2px solid #333;
+    border-radius: 15px;
+    color: #999;
+    font-size: 1.2rem;
+  }
+
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+
+}
+
+.movie-card {
+  background: #0a0a0a;
+  padding: 25px;
+  border: 2px solid #333;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  border-color: white;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+
+.delete-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.movie-card h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  padding-right: 40px;
+}
+
+.movie-genre {
+  color: #ccc;
+  font-style: italic;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.movie-rating {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff;
+  background: #000;
+  color: #fff;
+}
+
+.movie-date {
+  color: #999;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.movie-review {
+  padding: 15px;
+  background: #1a1a1a;
+  border-left: 4px solid #fff;
+  border-radius: 6px;
+  color: #ccc;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.rating-10 {
+  border-color: #ffffff;
+  background: #000000;
+}
+
+.rating-9 {
+  border-color: #eeeeee;
+  background: #111111;
+}
+
+.rating-8 {
+  border-color: #dddddd;
+  background: #222222;
+}
+
+.rating-7 {
+  border-color: #cccccc;
+  background: #333333;
+}
+
+.rating-6 {
+  border-color: #bbbbbb;
+  background: #444444;
+}
+
+.rating-5 {
+  border-color: #aaaaaa;
+  background: #555555;
+}
+
+.rating-4 {
+  border-color: #999999;
+  background: #666666;
+}
+
+.rating-3 {
+  border-color: #888888;
+  background: #777777;
+}
+
+.rating-2 {
+  border-color: #777777;
+  background: #888888;
+}
+
+.rating-1 {
+  border-color: #666666;
+  background: #999999;
 }

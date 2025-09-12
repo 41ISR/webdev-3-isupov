@@ -9,6 +9,7 @@ function App() {
   const [rating, setRating] = useState(5)
   const [review, setReview] = useState('')
   const [filterGenre, setFilterGenre] = useState('Все')
+  const [sortOrder, setSortOrder] = useState('desc')
 
   const genres = ["Драма", "Комедия", "Хентай", "Боевик", "Триллер", "Фантастика", "Ужасы", "Документальный", "Другое"]
 
@@ -55,9 +56,10 @@ function App() {
         <p className='text'>
           Приложение для отслеживания просмотренных фильмов с возможностью выставления оценок и написания коротких обзоров.
         </p>
-        <div className='scroll'>▼</div>
+        <a className='scroll' href="#gptr">▼</a>
       </header>
-      <main className='main'>
+
+      <main className='main' id='gptr'>
         <section className='add__movie'>
           <h2 className='title'>
             Добавить новый фильм
@@ -119,6 +121,7 @@ function App() {
             <button type="submit" className="submit-btn">Добавить фильм</button>
           </form>
         </section>
+
         <section className='filters'>
           <div className='group'>
             <label htmlFor="filter-genre">
@@ -135,6 +138,73 @@ function App() {
               ))}
             </select>
           </div>
+
+          <div className="group">
+            <label>Сортировка по оценке</label>
+            <div className="radio-group">
+              <label>
+                <input
+                  type="radio"
+                  value="desc"
+                  checked={sortOrder === 'desc'}
+                  onChange={() => setSortOrder('desc')}
+                />
+                По убыванию
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="asc"
+                  checked={sortOrder === "asc"}
+                  onChange={() => setSortOrder("asc")}
+                />
+                По возрастанию
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section className="movies-list">
+          <h2 className="title">Мои фильмы ({filteredAndSortedMovies.length})</h2>
+          {filteredAndSortedMovies.length === 0 ? (
+            <div className="empty-state">
+              <p>Список фильмов пуст. Добавьте первый фильм!</p>
+            </div>
+          ) : (
+            <div className='empty-state'>
+              <div className="movies-grid">
+                {filteredAndSortedMovies.map(movie => (
+                  <div key={movie.id} className="movie-card">
+                    <button
+                      className="delete-btn"
+                      onClick={() => deleteMovie(movie.id)}
+                      aria-label="Удалить фильм"
+                    >
+                      ✖
+                    </button>
+
+                    <h3>{movie.title}</h3>
+                    <div className="movie-genre">{movie.genre}</div>
+
+                    <div className={`movie-rating rating-${Math.floor(movie.rating)}`}>
+                      {movie.rating}
+                    </div>
+
+                    <div className="movie-date">Добавлен: {movie.date}</div>
+
+                    {movie.review && (
+                      <div className="movie-review">
+                        {movie.review.length > 100
+                          ? `${movie.review.substring(0, 100)}...`
+                          : movie.review
+                        }
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       </main>
     </div>
